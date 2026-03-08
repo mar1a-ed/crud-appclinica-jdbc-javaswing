@@ -217,6 +217,8 @@ public class PacienteMainForm extends javax.swing.JInternalFrame {
 
                     JOptionPane.showMessageDialog(rootPane, "Paciente removido com sucesso.");
                     jBbuscarActionPerformed(evt);
+                    
+                    ps.close();
                 } catch (SQLException ex) {
 
                 }

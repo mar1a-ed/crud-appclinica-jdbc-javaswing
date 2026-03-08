@@ -1,12 +1,13 @@
-
 package view;
 
 import connector.ConexaoDB;
+import especialidadeFrames.EspecialidadeMainForm;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import medicoFrames.MedicoMainForm;
 import pacienteFrames.PacienteMainForm;
 
 public class MainFrame extends javax.swing.JFrame {
@@ -63,6 +64,11 @@ public class MainFrame extends javax.swing.JFrame {
         jMarquivo.add(jMajuda);
 
         jMFechar.setText("Fechar");
+        jMFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMFecharActionPerformed(evt);
+            }
+        });
         jMarquivo.add(jMFechar);
 
         Itens.add(jMarquivo);
@@ -78,9 +84,19 @@ public class MainFrame extends javax.swing.JFrame {
         jMregistros.add(jMpacientes);
 
         jMmedicos.setText("Medicos");
+        jMmedicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMmedicosActionPerformed(evt);
+            }
+        });
         jMregistros.add(jMmedicos);
 
         jMespecialidade.setText("Especialidade");
+        jMespecialidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMespecialidadeActionPerformed(evt);
+            }
+        });
         jMregistros.add(jMespecialidade);
 
         Itens.add(jMregistros);
@@ -130,6 +146,32 @@ public class MainFrame extends javax.swing.JFrame {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMpacientesActionPerformed
+
+    private void jMmedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMmedicosActionPerformed
+        try {
+            MedicoMainForm telaMedico = new MedicoMainForm();
+            Desktop.add(telaMedico);
+            telaMedico.setVisible(rootPaneCheckingEnabled);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jMmedicosActionPerformed
+
+    private void jMespecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMespecialidadeActionPerformed
+        try {
+            EspecialidadeMainForm telaEspecialidade =  new EspecialidadeMainForm();
+            Desktop.add(telaEspecialidade);
+            telaEspecialidade.setVisible(rootPaneCheckingEnabled);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jMespecialidadeActionPerformed
+
+    private void jMFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMFecharActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jMFecharActionPerformed
 
     public static void main(String args[]) {
         
