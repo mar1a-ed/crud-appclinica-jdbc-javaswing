@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jBcadastrar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jBfechar" min="-2" pref="88" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLdataNasc" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLtelefone" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLemail" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLnome" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLcpf" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLsexo" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jTemail" max="32767" attributes="0"/>
+                          <Component id="jTtelefone" max="32767" attributes="0"/>
+                          <Component id="jFormattedTextFieldcpf" max="32767" attributes="0"/>
+                          <Component id="jTsexo" max="32767" attributes="0"/>
+                          <Component id="jDateChooserNasc" alignment="0" pref="221" max="32767" attributes="0"/>
+                          <Component id="jTnome" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="372" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLnome" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTnome" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLemail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTemail" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLtelefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTtelefone" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLcpf" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jFormattedTextFieldcpf" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLsexo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTsexo" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLdataNasc" min="-2" max="-2" attributes="0"/>
+                  <Component id="jDateChooserNasc" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jBcadastrar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="jBfechar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="73" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="jLnome">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nome : "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLemail">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="E-mail : "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLtelefone">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Telefone : "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLcpf">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CPF : "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLsexo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sexo : "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLdataNasc">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Data Nascimento :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBcadastrar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cadastrar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBcadastrarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBfechar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fechar"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBfecharActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTemail">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTtelefone">
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldcpf">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="###.###.###-##" subtype="-1" type="5"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserNasc">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTsexo">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTnome">
+    </Component>
+  </SubComponents>
+</Form>
