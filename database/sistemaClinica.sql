@@ -44,3 +44,23 @@ create table exame(
 	id int primary key auto_increment,
     nome_exame varchar(100)
 );
+
+create table medico_especialidade(
+	id_espMedico int primary key auto_increment,
+    crm_medico int,
+    especialidade_id int,
+    foreign key (crm_medico) references medico (crm),
+    foreign key (especialidade_id) references especialidade (id_especialidade)
+);
+
+show create table medico;
+
+insert into especialidade (nome, desc_especialidade) values
+('Anestesiologista', 'Aplica anestesia e cuida da dor no pré e pós-operatório.'),
+('Cardiologista', 'Estuda e trata doenças do coração e sistema circulatório.'),
+('Dermatologista', 'Cuida de doenças da pele, cabelos e unhas.'),
+('Gastroenterologista', 'Trata doenças do aparelho digestivo.'),
+('Ginecologista', 'Cuida da saúde da mulher e da gestação.'),
+('Infectologista', 'Diagnostica e trata infecções (vírus, bactérias, fungos).'),
+('Neurologista', 'Trata doenças do sistema nervoso clínico');
+
