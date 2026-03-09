@@ -32,6 +32,7 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
         jBeditar = new javax.swing.JButton();
         jBfechar = new javax.swing.JButton();
         jBexcluir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jLnome.setText("Nome :");
 
@@ -83,6 +84,8 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("Especialidade Medica");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,11 +112,17 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
                                 .addComponent(jBfechar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(102, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(314, 314, 314)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLnome)
                     .addComponent(jTnome, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -132,6 +141,25 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void abrirFrameCentralizado(javax.swing.JInternalFrame frame) {
+        if (!frame.isDisplayable()) {
+            this.getDesktopPane().add(frame);
+        }
+
+        try {
+            frame.pack(); 
+
+            int x = (this.getDesktopPane().getWidth() - frame.getWidth()) / 2;
+            int y = (this.getDesktopPane().getHeight() - frame.getHeight()) / 2;
+
+            frame.setLocation(x, y);
+            frame.setVisible(true);
+            frame.setSelected(true); 
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void jBfecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfecharActionPerformed
         this.dispose();
     }//GEN-LAST:event_jBfecharActionPerformed
@@ -139,8 +167,7 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
     private void jBnovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnovoActionPerformed
         try {
             AddEspecialidadeForm telaAdd =  new AddEspecialidadeForm();
-            this.getDesktopPane().add(telaAdd);
-            telaAdd.setVisible(true);
+            abrirFrameCentralizado(telaAdd);
             
         } catch (SQLException ex) {
             Logger.getLogger(EspecialidadeMainForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -185,10 +212,9 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
             String nome = jTable1.getValueAt(qtd_linha, 0).toString();
             
             try {
-                EditarEspecialidadeForm telaAtualizar = new EditarEspecialidadeForm();
-                this.getDesktopPane().add(telaAtualizar);               
+                EditarEspecialidadeForm telaAtualizar = new EditarEspecialidadeForm();             
                 telaAtualizar.selectDados(nome);                
-                telaAtualizar.setVisible(true);
+                abrirFrameCentralizado(telaAtualizar);
                 
             } catch (SQLException ex) {
                
@@ -234,6 +260,7 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBexcluir;
     private javax.swing.JButton jBfechar;
     private javax.swing.JButton jBnovo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLnome;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

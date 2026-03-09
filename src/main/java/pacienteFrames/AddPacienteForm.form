@@ -19,47 +19,57 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jBcadastrar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jBfechar" min="-2" pref="88" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="326" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLdataNasc" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLtelefone" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLemail" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLnome" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLcpf" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLsexo" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTemail" max="32767" attributes="0"/>
-                          <Component id="jTtelefone" max="32767" attributes="0"/>
-                          <Component id="jFormattedTextFieldcpf" max="32767" attributes="0"/>
-                          <Component id="jTsexo" max="32767" attributes="0"/>
-                          <Component id="jDateChooserNasc" alignment="0" pref="221" max="32767" attributes="0"/>
-                          <Component id="jTnome" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jBcadastrar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jBfechar" min="-2" pref="88" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLdataNasc" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLtelefone" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLemail" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLnome" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLcpf" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLsexo" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jTemail" max="32767" attributes="0"/>
+                                  <Component id="jTtelefone" max="32767" attributes="0"/>
+                                  <Component id="jFormattedTextFieldcpf" max="32767" attributes="0"/>
+                                  <Component id="jTsexo" max="32767" attributes="0"/>
+                                  <Component id="jDateChooserNasc" alignment="0" pref="221" max="32767" attributes="0"/>
+                                  <Component id="jTnome" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="372" max="32767" attributes="0"/>
+              <EmptySpace pref="334" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLnome" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTnome" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLemail" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTemail" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -89,7 +99,7 @@
                   <Component id="jBcadastrar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="jBfechar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="73" max="32767" attributes="0"/>
+              <EmptySpace pref="63" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -158,6 +168,11 @@
     <Component class="javax.swing.JTextField" name="jTsexo">
     </Component>
     <Component class="javax.swing.JTextField" name="jTnome">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cadastrar Paciente"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

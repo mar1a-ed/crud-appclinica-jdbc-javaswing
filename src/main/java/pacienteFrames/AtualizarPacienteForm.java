@@ -34,6 +34,7 @@ public class AtualizarPacienteForm extends javax.swing.JInternalFrame {
         jFormattedTextFieldcpf = new javax.swing.JFormattedTextField();
         jTsexo = new javax.swing.JTextField();
         jDateChooserNasc = new com.toedter.calendar.JDateChooser();
+        jLabel1 = new javax.swing.JLabel();
 
         jLnome.setText("Nome :");
 
@@ -73,6 +74,8 @@ public class AtualizarPacienteForm extends javax.swing.JInternalFrame {
 
         jTsexo.setEditable(false);
 
+        jLabel1.setText("Atualizar Pacientes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,11 +104,17 @@ public class AtualizarPacienteForm extends javax.swing.JInternalFrame {
                             .addComponent(jTsexo)
                             .addComponent(jDateChooserNasc, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))))
                 .addContainerGap(370, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(327, 327, 327))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLnome)
                     .addComponent(jTnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -206,6 +215,7 @@ public class AtualizarPacienteForm extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBfechar;
     private com.toedter.calendar.JDateChooser jDateChooserNasc;
     private javax.swing.JFormattedTextField jFormattedTextFieldcpf;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLcpf;
     private javax.swing.JLabel jLdataNasc;
     private javax.swing.JLabel jLemail;
