@@ -29,6 +29,8 @@ public class EditarEspecialidadeForm extends javax.swing.JInternalFrame {
         jBfechar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        setClosable(true);
+
         jLnome.setText("Nome :");
 
         jLdesc.setText("Descrição :");
@@ -130,7 +132,7 @@ public class EditarEspecialidadeForm extends javax.swing.JInternalFrame {
             rs.close();
             
         }catch(SQLException e){
-            
+            JOptionPane.showMessageDialog(rootPane, "Erro. " +e.getMessage());
         }
     }
     
@@ -156,7 +158,7 @@ public class EditarEspecialidadeForm extends javax.swing.JInternalFrame {
             ps.close();
             
         }catch(SQLException e){
-            
+            JOptionPane.showMessageDialog(rootPane, "Erro. " +e.getMessage());
         }
     }//GEN-LAST:event_jBeditarActionPerformed
 

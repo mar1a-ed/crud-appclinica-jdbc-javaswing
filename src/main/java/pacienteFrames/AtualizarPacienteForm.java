@@ -20,6 +20,7 @@ public class AtualizarPacienteForm extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLnome = new javax.swing.JLabel();
         jLemail = new javax.swing.JLabel();
         jLtelefone = new javax.swing.JLabel();
@@ -32,9 +33,12 @@ public class AtualizarPacienteForm extends javax.swing.JInternalFrame {
         jTemail = new javax.swing.JTextField();
         jTtelefone = new javax.swing.JTextField();
         jFormattedTextFieldcpf = new javax.swing.JFormattedTextField();
-        jTsexo = new javax.swing.JTextField();
         jDateChooserNasc = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
+        jRf = new javax.swing.JRadioButton();
+        jRm = new javax.swing.JRadioButton();
+
+        setClosable(true);
 
         jLnome.setText("Nome :");
 
@@ -72,9 +76,17 @@ public class AtualizarPacienteForm extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        jTsexo.setEditable(false);
+        jDateChooserNasc.setEnabled(false);
 
         jLabel1.setText("Atualizar Pacientes");
+
+        buttonGroup1.add(jRf);
+        jRf.setText("F");
+        jRf.setEnabled(false);
+
+        buttonGroup1.add(jRm);
+        jRm.setText("M");
+        jRm.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,13 +108,17 @@ public class AtualizarPacienteForm extends javax.swing.JInternalFrame {
                             .addComponent(jLemail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLnome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTnome)
-                            .addComponent(jTemail)
-                            .addComponent(jTtelefone)
-                            .addComponent(jFormattedTextFieldcpf)
-                            .addComponent(jTsexo)
-                            .addComponent(jDateChooserNasc, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTnome)
+                                .addComponent(jTemail)
+                                .addComponent(jTtelefone)
+                                .addComponent(jFormattedTextFieldcpf)
+                                .addComponent(jDateChooserNasc, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jRf)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRm)))))
                 .addContainerGap(370, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -130,11 +146,12 @@ public class AtualizarPacienteForm extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLcpf)
                     .addComponent(jFormattedTextFieldcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLsexo)
-                    .addComponent(jTsexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                    .addComponent(jRf)
+                    .addComponent(jRm))
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jDateChooserNasc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLdataNasc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -164,7 +181,11 @@ public class AtualizarPacienteForm extends javax.swing.JInternalFrame {
                 jTemail.setText(rs.getString("email"));
                 jTtelefone.setText(rs.getString("telefone"));
                 jFormattedTextFieldcpf.setText(cpf);
-                jTsexo.setText(rs.getString("sexo"));
+                if(rs.getString("sexo").equalsIgnoreCase("m")){
+                    jRm.setSelected(true);
+                }else{
+                    jRf.setSelected(true);
+                }
                 jDateChooserNasc.setDate(rs.getDate("data_nasc"));
             }
             
@@ -172,7 +193,7 @@ public class AtualizarPacienteForm extends javax.swing.JInternalFrame {
             rs.close();
             
         }catch(SQLException e){
-            
+            JOptionPane.showMessageDialog(rootPane, "Erro. " + e.getMessage());
         }
     }
     
@@ -185,7 +206,7 @@ public class AtualizarPacienteForm extends javax.swing.JInternalFrame {
         
         String email = jTemail.getText();
         String telefone = jTtelefone.getText();
-        String cpf = jFormattedTextFieldcpf.getText().replaceAll("[^0-9]", "");
+        String cpf = jFormattedTextFieldcpf.getText();
         
         int linhas;
         
@@ -205,12 +226,13 @@ public class AtualizarPacienteForm extends javax.swing.JInternalFrame {
             ps.close();
             
         }catch(SQLException e){
-            
+            JOptionPane.showMessageDialog(rootPane, "Erro. " + e.getMessage());
         }
     }//GEN-LAST:event_jBatualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBatualizar;
     private javax.swing.JButton jBfechar;
     private com.toedter.calendar.JDateChooser jDateChooserNasc;
@@ -222,9 +244,10 @@ public class AtualizarPacienteForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLnome;
     private javax.swing.JLabel jLsexo;
     private javax.swing.JLabel jLtelefone;
+    private javax.swing.JRadioButton jRf;
+    private javax.swing.JRadioButton jRm;
     private javax.swing.JTextField jTemail;
     private javax.swing.JTextField jTnome;
-    private javax.swing.JTextField jTsexo;
     private javax.swing.JTextField jTtelefone;
     // End of variables declaration//GEN-END:variables
 }

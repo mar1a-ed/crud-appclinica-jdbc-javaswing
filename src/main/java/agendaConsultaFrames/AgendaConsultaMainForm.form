@@ -5,6 +5,9 @@
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
   </NonVisualComponents>
+  <Properties>
+    <Property name="closable" type="boolean" value="true"/>
+  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -37,13 +40,15 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jRagendada" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jRfinalizada" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jRcancelar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jTmedico" pref="249" max="32767" attributes="0"/>
+                                  <Component id="jTmedico" pref="243" max="32767" attributes="0"/>
                                   <Component id="jTpaciente" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
@@ -60,24 +65,22 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jBsalvar" min="-2" pref="135" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="jBfechar" min="-2" pref="135" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jDateChooserData" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jLhorario" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jComboBoxhorario" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jBsalvar" min="-2" pref="135" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="jBfechar" min="-2" pref="135" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jDateChooserData" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jLhorario" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jComboBoxhorario" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="311" max="-2" attributes="0"/>
@@ -114,6 +117,7 @@
                   <Component id="jLstatus" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jRagendada" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jRfinalizada" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jRcancelar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -190,6 +194,9 @@
         <Property name="text" type="java.lang.String" value="Finalizada"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRfinalizadaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserData">
     </Component>
@@ -213,15 +220,15 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="9">
-            <StringItem index="0" value="08 : 00"/>
-            <StringItem index="1" value="09 : 00"/>
-            <StringItem index="2" value="10 : 00"/>
-            <StringItem index="3" value="11 : 00"/>
-            <StringItem index="4" value="13 : 00"/>
-            <StringItem index="5" value="14 : 00"/>
-            <StringItem index="6" value="15 : 00"/>
-            <StringItem index="7" value="16 : 00"/>
-            <StringItem index="8" value="17 : 00"/>
+            <StringItem index="0" value="08:00"/>
+            <StringItem index="1" value="09:00"/>
+            <StringItem index="2" value="10:00"/>
+            <StringItem index="3" value="11:00"/>
+            <StringItem index="4" value="13:00"/>
+            <StringItem index="5" value="14:00"/>
+            <StringItem index="6" value="15:00"/>
+            <StringItem index="7" value="16:00"/>
+            <StringItem index="8" value="17:00"/>
           </StringArray>
         </Property>
       </Properties>
@@ -253,6 +260,15 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTprocurarMedico">
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRcancelar">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Cancelada"/>
+        <Property name="focusable" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

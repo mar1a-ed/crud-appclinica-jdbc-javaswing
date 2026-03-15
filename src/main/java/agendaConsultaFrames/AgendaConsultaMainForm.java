@@ -4,9 +4,6 @@ import connector.ConexaoDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
@@ -33,7 +30,7 @@ public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
             frame.setVisible(true);
             frame.setSelected(true); 
         } catch (java.beans.PropertyVetoException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
     }
     
@@ -70,6 +67,9 @@ public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
         jTprocurarPaciente = new javax.swing.JTextField();
         jBprocurarMedico = new javax.swing.JButton();
         jTprocurarMedico = new javax.swing.JTextField();
+        jRcancelar = new javax.swing.JRadioButton();
+
+        setClosable(true);
 
         jLpaciente.setText("Paciente :");
 
@@ -93,6 +93,11 @@ public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
         buttonGroup1.add(jRfinalizada);
         jRfinalizada.setText("Finalizada");
         jRfinalizada.setToolTipText("");
+        jRfinalizada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRfinalizadaActionPerformed(evt);
+            }
+        });
 
         jBsalvar.setText("Salvar");
         jBsalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +113,7 @@ public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBoxhorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08 : 00", "09 : 00", "10 : 00", "11 : 00", "13 : 00", "14 : 00", "15 : 00", "16 : 00", "17 : 00" }));
+        jComboBoxhorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00" }));
 
         jLabel1.setText("Agendar Consulta");
 
@@ -125,6 +130,10 @@ public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
                 jBprocurarMedicoActionPerformed(evt);
             }
         });
+
+        buttonGroup1.add(jRcancelar);
+        jRcancelar.setText("Cancelada");
+        jRcancelar.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,12 +152,14 @@ public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jRagendada)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jRfinalizada)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRcancelar)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTmedico, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                                    .addComponent(jTmedico, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                                     .addComponent(jTpaciente))
                                 .addGap(136, 136, 136)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,19 +170,18 @@ public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
                                     .addComponent(jTprocurarMedico)
                                     .addComponent(jTprocurarPaciente))
                                 .addGap(66, 66, 66))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(jBfechar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jDateChooserData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLhorario)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxhorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jBsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(35, 35, 35)
+                            .addComponent(jBfechar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jDateChooserData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLhorario)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jComboBoxhorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(311, 311, 311)
                 .addComponent(jLabel1)
@@ -200,7 +210,8 @@ public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLstatus)
                     .addComponent(jRagendada)
-                    .addComponent(jRfinalizada))
+                    .addComponent(jRfinalizada)
+                    .addComponent(jRcancelar))
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jDateChooserData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -227,7 +238,7 @@ public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
             BuscarPacienteForm telaPaciente = new BuscarPacienteForm(this);
             abrirFrameCentralizado(telaPaciente);
         } catch (SQLException ex) {
-            Logger.getLogger(AgendaConsultaMainForm.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, "Erro. " + ex.getMessage());
         }
     }//GEN-LAST:event_jBprocurarPacienteActionPerformed
 
@@ -236,7 +247,7 @@ public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
             BuscarMedicoForm telaMedico = new BuscarMedicoForm(this);
             abrirFrameCentralizado(telaMedico);
         } catch (SQLException ex) {
-            Logger.getLogger(AgendaConsultaMainForm.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, "Erro. " + ex.getMessage());
         }
         
     }//GEN-LAST:event_jBprocurarMedicoActionPerformed
@@ -252,22 +263,34 @@ public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
             
             if(jRagendada.isSelected()){
                 ps.setString(3, "Agendada");
-            }else{
+            }else if(jRfinalizada.isSelected()){
                 ps.setString(3, "Finalizada");
+            }else{
+                ps.setString(3, "Cancelada");
             }
             
-            Date data = jDateChooserData.getDate();
-            ps.setDate(4, new java.sql.Date(data.getTime()));
-            
+            java.util.Date dataDoChooser = jDateChooserData.getDate();
+            java.time.LocalDate dataBase = dataDoChooser.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+
+            String horarioSelecionado = jComboBoxhorario.getSelectedItem().toString().replace(" ", "");
+            java.time.LocalTime horario = java.time.LocalTime.parse(horarioSelecionado);
+
+            java.time.LocalDateTime dataHoraConsulta = dataBase.atTime(horario);
+
+            ps.setObject(4, dataHoraConsulta);
+
             ps.executeUpdate();
             JOptionPane.showMessageDialog(rootPane, "Consulta agendada com sucesso.");
             limpar();
             
             ps.close();
         }catch(SQLException e){
-            
+            JOptionPane.showMessageDialog(rootPane, "Erro. " + e.getMessage());
         }
     }//GEN-LAST:event_jBsalvarActionPerformed
+
+    private void jRfinalizadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRfinalizadaActionPerformed
+    }//GEN-LAST:event_jRfinalizadaActionPerformed
 
     public void limpar(){
         jTpaciente.setText("");
@@ -291,6 +314,7 @@ public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLpaciente;
     private javax.swing.JLabel jLstatus;
     private javax.swing.JRadioButton jRagendada;
+    private javax.swing.JRadioButton jRcancelar;
     private javax.swing.JRadioButton jRfinalizada;
     private javax.swing.JTextField jTmedico;
     private javax.swing.JTextField jTpaciente;

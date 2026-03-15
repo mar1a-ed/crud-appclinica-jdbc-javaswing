@@ -19,6 +19,7 @@ public class AddPacienteForm extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLnome = new javax.swing.JLabel();
         jLemail = new javax.swing.JLabel();
         jLtelefone = new javax.swing.JLabel();
@@ -31,9 +32,12 @@ public class AddPacienteForm extends javax.swing.JInternalFrame {
         jTtelefone = new javax.swing.JTextField();
         jFormattedTextFieldcpf = new javax.swing.JFormattedTextField();
         jDateChooserNasc = new com.toedter.calendar.JDateChooser();
-        jTsexo = new javax.swing.JTextField();
         jTnome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jRf = new javax.swing.JRadioButton();
+        jRm = new javax.swing.JRadioButton();
+
+        setClosable(true);
 
         jLnome.setText("Nome : ");
 
@@ -70,6 +74,12 @@ public class AddPacienteForm extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Cadastrar Paciente");
 
+        buttonGroup1.add(jRf);
+        jRf.setText("F");
+
+        buttonGroup1.add(jRm);
+        jRm.setText("M");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,9 +109,12 @@ public class AddPacienteForm extends javax.swing.JInternalFrame {
                                     .addComponent(jTemail)
                                     .addComponent(jTtelefone)
                                     .addComponent(jFormattedTextFieldcpf)
-                                    .addComponent(jTsexo)
                                     .addComponent(jDateChooserNasc, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                                    .addComponent(jTnome))))))
+                                    .addComponent(jTnome)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jRf)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jRm)))))))
                 .addContainerGap(334, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -125,11 +138,12 @@ public class AddPacienteForm extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLcpf)
                     .addComponent(jFormattedTextFieldcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLsexo)
-                    .addComponent(jTsexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(jRf)
+                    .addComponent(jRm))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLdataNasc)
                     .addComponent(jDateChooserNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,10 +167,17 @@ public class AddPacienteForm extends javax.swing.JInternalFrame {
         String nome = jTnome.getText();
         String email = jTemail.getText();
         String telefone = jTtelefone.getText();
-        String sexo = jTsexo.getText();
+        String sexo;
+        
+        if(jRf.isSelected()){
+            sexo = "f";
+        }else{
+            sexo = "m";
+        }
+        
         String cpf = jFormattedTextFieldcpf.getText();
         Date dataNasc = jDateChooserNasc.getDate();
-        java.sql.Date dataNasc2 = new java.sql.Date(dataNasc.getTime());
+        java.sql.Date dataNasc2 = new java.sql.Date(dataNasc.getTime());       
         
         try{
             conn = ConexaoDB.getConnection();
@@ -170,15 +191,15 @@ public class AddPacienteForm extends javax.swing.JInternalFrame {
             ps.setDate(6, dataNasc2);
             
             ps.executeUpdate();
+            
             ps.close();
             
             JOptionPane.showMessageDialog(rootPane, "Paciente cadastrado com sucesso.");
             limparCampos();
+            
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar paciente.");
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar paciente. "+ex.getMessage());
         }
-        
         
     }//GEN-LAST:event_jBcadastrarActionPerformed
 
@@ -186,12 +207,14 @@ public class AddPacienteForm extends javax.swing.JInternalFrame {
         jTnome.setText("");
         jTemail.setText("");
         jTtelefone.setText("");
-        jTsexo.setText("");
+        jRf.setSelected(false);
+        jRm.setSelected(false);
         jFormattedTextFieldcpf.setText("");
-        jDateChooserNasc.setDate(new java.util.Date());
+        jDateChooserNasc.setDate(null);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBcadastrar;
     private javax.swing.JButton jBfechar;
     private com.toedter.calendar.JDateChooser jDateChooserNasc;
@@ -203,9 +226,10 @@ public class AddPacienteForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLnome;
     private javax.swing.JLabel jLsexo;
     private javax.swing.JLabel jLtelefone;
+    private javax.swing.JRadioButton jRf;
+    private javax.swing.JRadioButton jRm;
     private javax.swing.JTextField jTemail;
     private javax.swing.JTextField jTnome;
-    private javax.swing.JTextField jTsexo;
     private javax.swing.JTextField jTtelefone;
     // End of variables declaration//GEN-END:variables
 }

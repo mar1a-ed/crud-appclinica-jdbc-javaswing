@@ -32,13 +32,13 @@ public class Prontuario extends javax.swing.JInternalFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLpaciente = new javax.swing.JLabel();
-        jLcontato = new javax.swing.JLabel();
+        jLmedico = new javax.swing.JLabel();
         jLdiagnostico = new javax.swing.JLabel();
         jLsexo = new javax.swing.JLabel();
         jRadioButtonfeminino = new javax.swing.JRadioButton();
         jRadioButtonmasculino = new javax.swing.JRadioButton();
         jTpaciente = new javax.swing.JTextField();
-        jTcontato = new javax.swing.JTextField();
+        jTcrmMedico = new javax.swing.JTextField();
         jLexames = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -50,9 +50,11 @@ public class Prontuario extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
 
+        setClosable(true);
+
         jLpaciente.setText("Paciente :");
 
-        jLcontato.setText("Contato :");
+        jLmedico.setText("Medico :");
 
         jLdiagnostico.setText("Diagnóstico :");
 
@@ -66,7 +68,7 @@ public class Prontuario extends javax.swing.JInternalFrame {
 
         jTpaciente.setEditable(false);
 
-        jTcontato.setEditable(false);
+        jTcrmMedico.setEditable(false);
 
         jLexames.setText("Exames :");
 
@@ -121,12 +123,12 @@ public class Prontuario extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLdiagnostico, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLpaciente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLcontato, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLmedico, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLexames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTpaciente)
-                            .addComponent(jTcontato)
+                            .addComponent(jTcrmMedico)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
                             .addComponent(jComboBoxExames, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
@@ -163,10 +165,10 @@ public class Prontuario extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
-                                .addComponent(jLcontato))
+                                .addComponent(jLmedico))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jTcontato, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTcrmMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLdiagnostico)
@@ -207,7 +209,7 @@ public class Prontuario extends javax.swing.JInternalFrame {
             ps.close();
             rs.close();
         }catch(SQLException e){
-     
+            JOptionPane.showMessageDialog(rootPane, "Erro. " + e.getMessage());
         }
     }
     
@@ -219,10 +221,10 @@ public class Prontuario extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jComboBoxExamesActionPerformed
 
-    public void dadosConsulta(Integer id, String nomePaciente, String contato, String sexo){
+    public void dadosConsulta(Integer id, String nomePaciente, String medico, String sexo){
         idConsulta = id;
         jTpaciente.setText(nomePaciente);
-        jTcontato.setText(contato);
+        jTcrmMedico.setText(medico);
         
         if (sexo != null) {
             if (sexo.equalsIgnoreCase("F")) {
@@ -231,10 +233,6 @@ public class Prontuario extends javax.swing.JInternalFrame {
                 jRadioButtonmasculino.setSelected(true);
             }
         }
-    }
-    
-    public void setConsulta(String nome, String contato, String sexo){
-        
     }
     
     private void jBaddExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaddExameActionPerformed
@@ -250,23 +248,45 @@ public class Prontuario extends javax.swing.JInternalFrame {
 
     private void jBregistrarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBregistrarConsultaActionPerformed
         PreparedStatement ps;
-        
+        ResultSet rs;
         String diagnostico = jTextArea1.getText();
         
         try{
-            ps = conn.prepareStatement("insert into execucao_consulta (id_ag, diagnostico) values (?, ?)");
+            ps = conn.prepareStatement("insert into execucao_consulta (id_ag, diagnostico) values (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             
             ps.setInt(1, idConsulta);
             ps.setString(2, diagnostico);
-            
+  
             ps.executeUpdate();
             
+            rs = ps.getGeneratedKeys();
+            
+            int id = 0;
+            
+            if(rs.next())
+                id = rs.getInt(1);
+                
+            ps = conn.prepareStatement("insert into consulta_exame (execucao_id, exame_id) values (?, ?)");
+            
+            for(Exame exame: exames){
+                ps.setInt(1, id);
+                ps.setInt(2, exame.getId());
+                ps.executeUpdate();
+            }
+                
+            ps = conn.prepareStatement("update agenda_consulta set status_consulta = 'Finalizada' where id = ?");
+                
+            ps.setInt(1, idConsulta);
+                
+            ps.executeUpdate();
+             
             JOptionPane.showMessageDialog(rootPane, "Consulta registrada com sucesso.");
             
             ps.close();
+            rs.close();
             
         }catch(SQLException e){
-            
+            JOptionPane.showMessageDialog(rootPane, "Erro. " + e.getMessage());
         }
         
     }//GEN-LAST:event_jBregistrarConsultaActionPerformed
@@ -278,10 +298,10 @@ public class Prontuario extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBfechar;
     private javax.swing.JButton jBregistrarConsulta;
     private javax.swing.JComboBox<Object> jComboBoxExames;
-    private javax.swing.JLabel jLcontato;
     private javax.swing.JLabel jLdiagnostico;
     private javax.swing.JLabel jLexames;
     private javax.swing.JList<String> jList1;
+    private javax.swing.JLabel jLmedico;
     private javax.swing.JLabel jLpaciente;
     private javax.swing.JLabel jLprontuario;
     private javax.swing.JLabel jLsexo;
@@ -289,7 +309,7 @@ public class Prontuario extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButtonmasculino;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTcontato;
+    private javax.swing.JTextField jTcrmMedico;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTpaciente;
     // End of variables declaration//GEN-END:variables

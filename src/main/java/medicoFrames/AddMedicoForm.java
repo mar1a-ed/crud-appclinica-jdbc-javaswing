@@ -43,6 +43,8 @@ public class AddMedicoForm extends javax.swing.JInternalFrame {
         jListEsp = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
 
+        setClosable(true);
+
         jLnome.setText("Nome :");
 
         jLcrm.setText("CRM : ");
@@ -166,7 +168,7 @@ public class AddMedicoForm extends javax.swing.JInternalFrame {
             rs.close();
             
         }catch(SQLException e){
-            
+            JOptionPane.showMessageDialog(rootPane, "Erro. " + e.getMessage());
         }
     }
     
@@ -192,15 +194,16 @@ public class AddMedicoForm extends javax.swing.JInternalFrame {
             ps = conn.prepareStatement("insert into medico_especialidade (crm_medico, especialidade_id) values (?, ?)");
             
             for (Especialidade e : especialidades) {
-            ps.setInt(1, crm);
-            ps.setInt(2, e.getIdEspecialidade()); 
-            ps.executeUpdate();
-            
+                ps.setInt(1, crm);
+                ps.setInt(2, e.getIdEspecialidade()); 
+                ps.executeUpdate();
             }
+            
+            ps.close();
             
             JOptionPane.showMessageDialog(rootPane, "Medico cadastrado com sucesso.");
         }catch(SQLException e){
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "Erro. " + e.getMessage());
         }
     }//GEN-LAST:event_jBcadastrarActionPerformed
 

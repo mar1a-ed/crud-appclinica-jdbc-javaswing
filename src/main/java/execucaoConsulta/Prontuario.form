@@ -5,6 +5,9 @@
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
   </NonVisualComponents>
+  <Properties>
+    <Property name="closable" type="boolean" value="true"/>
+  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -35,13 +38,13 @@
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jLdiagnostico" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLpaciente" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLcontato" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLmedico" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLexames" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jTpaciente" max="32767" attributes="0"/>
-                          <Component id="jTcontato" max="32767" attributes="0"/>
+                          <Component id="jTcrmMedico" max="32767" attributes="0"/>
                           <Component id="jScrollPane1" pref="254" max="32767" attributes="0"/>
                           <Component id="jComboBoxExames" max="32767" attributes="0"/>
                       </Group>
@@ -87,11 +90,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jLcontato" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLmedico" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jTcontato" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="jTcrmMedico" min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -127,9 +130,9 @@
         <Property name="text" type="java.lang.String" value="Paciente :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLcontato">
+    <Component class="javax.swing.JLabel" name="jLmedico">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Contato :"/>
+        <Property name="text" type="java.lang.String" value="Medico :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLdiagnostico">
@@ -163,7 +166,7 @@
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTcontato">
+    <Component class="javax.swing.JTextField" name="jTcrmMedico">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>

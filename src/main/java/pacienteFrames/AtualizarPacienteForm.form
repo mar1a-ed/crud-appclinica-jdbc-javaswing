@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="closable" type="boolean" value="true"/>
+  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -37,13 +44,19 @@
                           <Component id="jLnome" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTnome" max="32767" attributes="0"/>
-                          <Component id="jTemail" max="32767" attributes="0"/>
-                          <Component id="jTtelefone" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jFormattedTextFieldcpf" max="32767" attributes="0"/>
-                          <Component id="jTsexo" max="32767" attributes="0"/>
-                          <Component id="jDateChooserNasc" alignment="0" pref="201" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTnome" max="32767" attributes="0"/>
+                              <Component id="jTemail" max="32767" attributes="0"/>
+                              <Component id="jTtelefone" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jFormattedTextFieldcpf" max="32767" attributes="0"/>
+                              <Component id="jDateChooserNasc" alignment="0" pref="201" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jRf" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jRm" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -81,12 +94,13 @@
                   <Component id="jLcpf" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jFormattedTextFieldcpf" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLsexo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTsexo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jRf" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jRm" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jDateChooserNasc" max="32767" attributes="0"/>
                   <Component id="jLdataNasc" max="32767" attributes="0"/>
@@ -166,16 +180,32 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTsexo">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserNasc">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Atualizar Pacientes"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRf">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="F"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRm">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="M"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
   </SubComponents>

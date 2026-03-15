@@ -6,16 +6,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 public class EditarMedicoForm extends javax.swing.JInternalFrame {
 
     Connection conn;
     
+    List<Especialidade> especialidades;
     private javax.swing.DefaultListModel<String> listModel = new javax.swing.DefaultListModel<>();
 
     public EditarMedicoForm() throws SQLException {
         initComponents();
         conn = ConexaoDB.getConnection();
+        jListEsp.setModel(listModel);
+        this.especialidades = new ArrayList<>();
         comboBoxEspecialidades();
     }
 
@@ -38,6 +44,8 @@ public class EditarMedicoForm extends javax.swing.JInternalFrame {
         jListEsp = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
 
+        setClosable(true);
+
         jLnome.setText("Nome :");
 
         jLcrm.setText("CRM :");
@@ -47,8 +55,18 @@ public class EditarMedicoForm extends javax.swing.JInternalFrame {
         jLpreco.setText("Preço Consulta :");
 
         jComboBoxEsp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEsp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEspActionPerformed(evt);
+            }
+        });
 
         jBeditar.setText("Editar");
+        jBeditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBeditarActionPerformed(evt);
+            }
+        });
 
         jBfechar.setText("Fechar");
         jBfechar.addActionListener(new java.awt.event.ActionListener() {
@@ -58,6 +76,11 @@ public class EditarMedicoForm extends javax.swing.JInternalFrame {
         });
 
         jBsalvar.setText("Salvar");
+        jBsalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBsalvarActionPerformed(evt);
+            }
+        });
 
         jScrollPane.setViewportView(jListEsp);
 
@@ -151,7 +174,7 @@ public class EditarMedicoForm extends javax.swing.JInternalFrame {
             rs.close();
             
         }catch(SQLException e){
-            
+            JOptionPane.showMessageDialog(rootPane, "Erro. " + e.getMessage());
         }
         
     }
@@ -168,9 +191,9 @@ public class EditarMedicoForm extends javax.swing.JInternalFrame {
             rs = ps.executeQuery();
             
             if(rs.next()){
-                jTnome.setText("nome");
-                jTcrm.setText("crm");
-                jTpreco.setText("preco_consulta");
+                jTnome.setText(rs.getString("nome"));
+                jTcrm.setText(String.valueOf(rs.getInt("crm")));
+                jTpreco.setText(String.valueOf(rs.getDouble("preco_consulta")));
             }
             
             ps = conn.prepareStatement("select e.nome from especialidade e join medico_especialidade me on e.id_especialidade = me.especialidade_id where me.crm_medico = ?");
@@ -178,14 +201,19 @@ public class EditarMedicoForm extends javax.swing.JInternalFrame {
             rs = ps.executeQuery();
 
             while (rs.next()) {
+                Especialidade esp = new Especialidade(rs.getInt("id_especialidade"), rs.getString("nome"), rs.getString("desc_especialidade"));
+            
+                especialidades.add(esp);
+                
                 listModel.addElement(rs.getString("nome"));
+            
             }
             
             ps.close();
             rs.close();
             
         }catch(SQLException e){
-            
+            JOptionPane.showMessageDialog(rootPane, "Erro. " + e.getMessage());
         }
     
     }
@@ -193,6 +221,54 @@ public class EditarMedicoForm extends javax.swing.JInternalFrame {
     private void jBfecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfecharActionPerformed
         this.dispose();
     }//GEN-LAST:event_jBfecharActionPerformed
+
+    private void jBsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalvarActionPerformed
+        Especialidade esp = (Especialidade) jComboBoxEsp.getSelectedItem();
+        
+        if(!especialidades.contains(esp)){
+            especialidades.add(esp);
+            listModel.addElement(esp.getNome());
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Especialidade já adicionada");
+        }
+       
+    }//GEN-LAST:event_jBsalvarActionPerformed
+
+    private void jBeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeditarActionPerformed
+        PreparedStatement ps;
+        
+        try {
+            int crm = Integer.parseInt(jTcrm.getText());
+
+            double preco = Double.parseDouble(jTpreco.getText().replace(",", "."));
+
+            ps = conn.prepareStatement("update medico set preco_consulta = ? where crm = ?");          
+            ps.setDouble(1, preco);
+            ps.setInt(2, crm);
+            ps.executeUpdate();
+
+            ps = conn.prepareStatement("insert ignore into medico_especialidade (crm_medico, especialidade_id) values (?, ?)");
+
+            for (Especialidade e : especialidades) {
+                ps.setInt(1, crm);
+                ps.setInt(2, e.getIdEspecialidade());
+                ps.executeUpdate();
+            }
+
+            JOptionPane.showMessageDialog(rootPane, "Médico e especialidades atualizados com sucesso!");
+
+            especialidades.clear();
+        
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro no banco: " + ex.getMessage());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Verifique os valores numéricos (CRM e Preço).");
+        }
+    }//GEN-LAST:event_jBeditarActionPerformed
+
+    private void jComboBoxEspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEspActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxEspActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

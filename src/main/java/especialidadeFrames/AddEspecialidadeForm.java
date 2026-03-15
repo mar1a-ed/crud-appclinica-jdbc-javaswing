@@ -28,6 +28,8 @@ public class AddEspecialidadeForm extends javax.swing.JInternalFrame {
         jBfechar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        setClosable(true);
+
         jLnome.setText("Nome :");
 
         jLdesc.setText("Descrição :");
@@ -121,8 +123,9 @@ public class AddEspecialidadeForm extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(rootPane, "Especialidade cadastrada com sucesso.");
             
+            ps.close();
         }catch(SQLException e){
-            
+            JOptionPane.showMessageDialog(rootPane, "Erro. " +e.getMessage());
         }
     }//GEN-LAST:event_jBcadastrarActionPerformed
 

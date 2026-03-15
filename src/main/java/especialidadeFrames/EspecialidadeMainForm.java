@@ -5,8 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,6 +31,10 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
         jBfechar = new javax.swing.JButton();
         jBexcluir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLtodos = new javax.swing.JLabel();
+        jBbuscarTodos = new javax.swing.JButton();
+
+        setClosable(true);
 
         jLnome.setText("Nome :");
 
@@ -86,19 +88,21 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Especialidade Medica");
 
+        jLtodos.setText("Todos :");
+
+        jBbuscarTodos.setText("Buscar");
+        jBbuscarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBbuscarTodosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(jLnome)
-                        .addGap(23, 23, 23)
-                        .addComponent(jTnome, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -110,24 +114,39 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
                                 .addComponent(jBexcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(72, 72, 72)
                                 .addComponent(jBfechar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(314, 314, 314)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLnome)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTnome, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLtodos, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBbuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                            .addComponent(jBbuscarTodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(102, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(314, 314, 314)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(57, 57, 57)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLnome)
                     .addComponent(jTnome, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLnome)
                     .addComponent(jBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBbuscarTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLtodos))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -135,7 +154,7 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
                     .addComponent(jBeditar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBfechar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBexcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,7 +175,7 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
             frame.setVisible(true);
             frame.setSelected(true); 
         } catch (java.beans.PropertyVetoException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
     }
     
@@ -170,13 +189,13 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
             abrirFrameCentralizado(telaAdd);
             
         } catch (SQLException ex) {
-            Logger.getLogger(EspecialidadeMainForm.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, "Erro. " +ex.getMessage());
         }
                 
     }//GEN-LAST:event_jBnovoActionPerformed
 
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
-        DefaultTableModel tabelaModelo = new DefaultTableModel();
+        DefaultTableModel tabelaModelo = (DefaultTableModel) jTable1.getModel();
         tabelaModelo.setNumRows(0);
         
         PreparedStatement ps;
@@ -200,7 +219,7 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
             rs.close();
             
         }catch(SQLException e){
-            
+            JOptionPane.showMessageDialog(rootPane, "Erro. " +e.getMessage());
         }
     }//GEN-LAST:event_jBbuscarActionPerformed
 
@@ -217,7 +236,7 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
                 abrirFrameCentralizado(telaAtualizar);
                 
             } catch (SQLException ex) {
-               
+               JOptionPane.showMessageDialog(rootPane, "Erro. " +ex.getMessage());
             }
         }
         
@@ -246,22 +265,51 @@ public class EspecialidadeMainForm extends javax.swing.JInternalFrame {
                     
                     ps.close();
                 } catch (SQLException ex) {
-
+                    JOptionPane.showMessageDialog(rootPane, "Erro. " +ex.getMessage());
                 }
             }
         }
         
     }//GEN-LAST:event_jBexcluirActionPerformed
 
+    private void jBbuscarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarTodosActionPerformed
+        DefaultTableModel tabelaModelo = (DefaultTableModel) jTable1.getModel();
+        tabelaModelo.setNumRows(0);
+        
+        PreparedStatement ps;
+        ResultSet rs;
+        
+        try{
+            ps = conn.prepareStatement("select * from especialidade");
+            
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                tabelaModelo.addRow(new Object[]{
+                    rs.getString("nome"), rs.getString("desc_especialidade")
+                });
+            }
+            
+            ps.close();
+            rs.close();
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(rootPane, "Erro. " +e.getMessage());
+        }
+        
+    }//GEN-LAST:event_jBbuscarTodosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBbuscar;
+    private javax.swing.JButton jBbuscarTodos;
     private javax.swing.JButton jBeditar;
     private javax.swing.JButton jBexcluir;
     private javax.swing.JButton jBfechar;
     private javax.swing.JButton jBnovo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLnome;
+    private javax.swing.JLabel jLtodos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTnome;
