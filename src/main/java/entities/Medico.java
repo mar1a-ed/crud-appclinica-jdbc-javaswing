@@ -4,16 +4,14 @@ public class Medico {
     private Integer crm;
     private String nomeMedico;
     private Double precoConsulta;
-    private Especialidade especialidade;
 
     public Medico() {
     }
 
-    public Medico(Integer crm, String nomeMedico, Double precoConsulta, Especialidade especialidade) {
+    public Medico(Integer crm, String nomeMedico, Double precoConsulta) {
         this.crm = crm;
         this.nomeMedico = nomeMedico;
         this.precoConsulta = precoConsulta;
-        this.especialidade = especialidade;
     }
 
     public Integer getCrm() {
@@ -38,14 +36,6 @@ public class Medico {
 
     public void setPrecoConsulta(Double precoConsulta) {
         this.precoConsulta = precoConsulta;
-    }
-
-    public Especialidade getEspecialidade() {
-        return especialidade;
-    }
-
-    public void setEspecialidade(Especialidade especialidade) {
-        this.especialidade = especialidade;
     }
   
 }

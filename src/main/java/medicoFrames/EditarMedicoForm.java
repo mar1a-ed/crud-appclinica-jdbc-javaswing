@@ -191,12 +191,12 @@ public class EditarMedicoForm extends javax.swing.JInternalFrame {
             rs = ps.executeQuery();
             
             if(rs.next()){
-                jTnome.setText(rs.getString("nome"));
+                jTnome.setText(rs.getString("nome_medico"));
                 jTcrm.setText(String.valueOf(rs.getInt("crm")));
                 jTpreco.setText(String.valueOf(rs.getDouble("preco_consulta")));
             }
             
-            ps = conn.prepareStatement("select e.nome from especialidade e join medico_especialidade me on e.id_especialidade = me.especialidade_id where me.crm_medico = ?");
+            ps = conn.prepareStatement("select e.* from especialidade e join medico_especialidade me on e.id_especialidade = me.especialidade_id where me.crm_medico = ?");
             ps.setInt(1, crm);
             rs = ps.executeQuery();
 

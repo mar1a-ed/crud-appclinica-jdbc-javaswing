@@ -54,6 +54,11 @@ public class AddMedicoForm extends javax.swing.JInternalFrame {
         jLpreco.setText("Preço Consulta :");
 
         jComboBoxEsp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEsp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEspActionPerformed(evt);
+            }
+        });
 
         jBcadastrar.setText("Cadastrar");
         jBcadastrar.setToolTipText("");
@@ -182,6 +187,10 @@ public class AddMedicoForm extends javax.swing.JInternalFrame {
         Integer crm = Integer.parseInt(jTcrm.getText());
         Double preco_consulta = Double.parseDouble(jTpreco.getText());
         
+        if(!validaDados()){
+            return;
+        }
+        
         try{
             ps = conn.prepareStatement("insert into medico (nome_medico, crm, preco_consulta) values (?, ?, ?)");
             
@@ -218,6 +227,57 @@ public class AddMedicoForm extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBaddEspActionPerformed
 
+    private void jComboBoxEspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEspActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxEspActionPerformed
+
+    private boolean validaDados() {
+        if (jTnome.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "O nome do médico é obrigatório.");
+            jTnome.requestFocus();
+            return false;
+        }
+
+        try {
+            if (jTcrm.getText().trim().isEmpty()) {
+                throw new Exception("O CRM é obrigatório.");
+            }
+            
+            Integer.parseInt(jTcrm.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "O CRM deve conter apenas números inteiros.");
+            jTcrm.requestFocus();
+            return false;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            jTcrm.requestFocus();
+            return false;
+        }
+
+        if (especialidades.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Adicione pelo menos uma especialidade para o médico.");
+            jComboBoxEsp.requestFocus();
+            return false;
+        }
+
+        try {
+            String precoTexto = jTpreco.getText().trim().replace(",", ".");
+            if (precoTexto.isEmpty()) {
+                throw new Exception("O preço da consulta é obrigatório.");
+            }
+            Double.parseDouble(precoTexto);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Preço inválido! Use apenas números (ex: 150.00).");
+            jTpreco.requestFocus();
+            return false;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            jTpreco.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBaddEsp;

@@ -255,6 +255,10 @@ public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
     private void jBsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalvarActionPerformed
         PreparedStatement ps;
         
+        if(!validaDados()){
+            return;
+        }
+        
         try{
             ps = conn.prepareStatement("insert into agenda_consulta (id_cpf, id_crm, status_consulta, data_consulta) values (?, ?, ?, ?)");
             
@@ -299,6 +303,33 @@ public class AgendaConsultaMainForm extends javax.swing.JInternalFrame {
         jTprocurarPaciente.setText("");
     }
 
+    private boolean validaDados() {
+        if (jTprocurarPaciente.getText().trim().isEmpty() || jTpaciente.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Paciente deve ser selecionado usando o botão 'Procurar'.");
+            jBprocurarPaciente.requestFocus();
+            return false;
+        }
+
+        if (jTprocurarMedico.getText().trim().isEmpty() || jTmedico.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Médico deve ser selecionado usando o botão 'Procurar'.");
+            jBprocurarMedico.requestFocus();
+            return false;
+        }
+
+        if (!jRagendada.isSelected() && !jRfinalizada.isSelected() && !jRcancelar.isSelected()) {
+            JOptionPane.showMessageDialog(this, "O status da consulta deve ser selecionado.");
+            return false;
+        }
+
+        if (jDateChooserData.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "A data da consulta deve ser selecionada.");
+            jDateChooserData.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBfechar;

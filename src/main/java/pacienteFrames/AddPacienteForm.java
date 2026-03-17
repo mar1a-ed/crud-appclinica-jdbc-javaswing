@@ -164,6 +164,10 @@ public class AddPacienteForm extends javax.swing.JInternalFrame {
     private void jBcadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcadastrarActionPerformed
         PreparedStatement ps;
         
+        if(!validaDados()){
+            return;
+        }
+        
         String nome = jTnome.getText();
         String email = jTemail.getText();
         String telefone = jTtelefone.getText();
@@ -213,6 +217,38 @@ public class AddPacienteForm extends javax.swing.JInternalFrame {
         jDateChooserNasc.setDate(null);
     }
 
+    private boolean validaDados() {
+        if (jTnome.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "O campo Nome é obrigatório.");
+            jTnome.requestFocus();
+            return false;
+        }
+
+        if (!jTemail.getText().trim().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            JOptionPane.showMessageDialog(this, "Informe um e-mail válido.");
+            jTemail.requestFocus();
+            return false;
+        }
+
+        if (jFormattedTextFieldcpf.getText().equals("   .   .   -  ")) {
+            JOptionPane.showMessageDialog(this, "O CPF é obrigatório.");
+            jFormattedTextFieldcpf.requestFocus();
+            return false;
+        }
+
+        if (!jRf.isSelected() && !jRm.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Selecione o sexo do paciente.");
+            return false;
+        }
+
+        if (jDateChooserNasc.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Selecione uma data de nascimento válida.");
+            jDateChooserNasc.requestFocus();
+            return false;
+        }
+
+        return true; 
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBcadastrar;

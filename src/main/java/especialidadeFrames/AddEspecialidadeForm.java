@@ -113,6 +113,10 @@ public class AddEspecialidadeForm extends javax.swing.JInternalFrame {
         String nome = jTnome.getText();
         String desc = jTextAreaDesc.getText();
         
+        if(!validaDados()){
+            return;
+        }
+        
         try{
             ps = conn.prepareStatement("insert into especialidade (nome, desc_especialidade) values (?, ?)");
             
@@ -129,6 +133,21 @@ public class AddEspecialidadeForm extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBcadastrarActionPerformed
 
+    private boolean validaDados() {
+        if (jTnome.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "O nome da especialidade é obrigatório.");
+            jTnome.requestFocus();
+            return false;
+        }
+
+        if (jTextAreaDesc.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, insira uma breve descrição da especialidade.");
+            jTextAreaDesc.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBcadastrar;
